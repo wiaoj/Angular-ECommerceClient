@@ -1,7 +1,77 @@
-<a routerLink="">Home</a> |
-<a routerLink="products">Products</a> | 
-<a routerLink="basket">Baskets</a> |
-<a routerLink="admin">Admin</a>
-<!-- <app-layout></app-layout> -->
-<br>
-<router-outlet></router-outlet>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a routerLink="" class="navbar-brand">ECommerce</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a routerLink="" class="nav-link active" aria-current="page">
+            <mat-icon color="primary">home</mat-icon>
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="products" class="nav-link">
+            <mat-icon color="primary">category</mat-icon>
+            Products
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="basket" class="nav-link">
+            <mat-icon color="accent">shopping_cart</mat-icon>
+            Baskets
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="admin" class="nav-link btn btn-outline-warning">
+            <mat-icon color="warn">admin_panel_settings</mat-icon>
+            Yönetim Paneli
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container-md">
+  <router-outlet></router-outlet>
+</div>

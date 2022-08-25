@@ -4,8 +4,8 @@ import { DashboardComponent } from './components/admin/components/dashboard/dash
 import { LayoutComponent } from './components/admin/layout/layout.component';
 import { HomeComponent } from './components/ui/components/home/home.component';
 
-const ADMIN_COMPONENTS_PATH = "./admin/components/";
-const UI_COMPONENTS_PATH = "./components/ui/components/";
+const ADMIN_COMPONENTS_PATH = './components/admin/components/';
+const UI_COMPONENTS_PATH = './components/ui/components/';
 const routes: Routes = [
   {
     path: 'admin',

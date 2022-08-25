@@ -3,14 +3,9 @@ import { CommonModule } from '@angular/common';
 import { AdminModule } from './admin/admin.module';
 import { UiModule } from './ui/ui.module';
 
-
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    AdminModule,
-    UiModule
-  ]
+  imports: [CommonModule, AdminModule, UiModule],
+  exports: [AdminModule, UiModule],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}

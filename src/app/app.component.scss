@@ -1,0 +1,14 @@
+li {
+    padding: .2rem;
+    a.nav-link {
+        display: flex;
+        align-items: center;
+        
+        &:not([class*="outline"]){
+        border-bottom: 2px solid transparent;}
+    
+        &:not([class*="outline"]):hover {
+            border-bottom: 2px solid green;
+        }
+    }
+}
