@@ -1,1 +1,10 @@
-<p>sidebar works!</p>
+<!-- adminin altındaki layout olduğu için ona göre linkler bildirilir -->
+<!-- baştaki / ise origine kadar olan tüm pathi silip sadece admin yazar -->
+<!-- linklerin çalışması için components.module.ts içine routermodule eklenmelidir sidebar onun içinde olduğu için -->
+<mat-list role="list">
+    <a mat-list-item role="listitem" routerLink="/admin">Dashboard</a>
+    <a mat-list-item role="listitem" routerLink="customers">Customers</a>
+    <a mat-list-item role="listitem" routerLink="products">Products</a>
+    <a mat-list-item role="listitem" routerLink="orders">Orders</a>
+    <a mat-list-item role="listitem" routerLink="">Siteyi gör</a>
+</mat-list>

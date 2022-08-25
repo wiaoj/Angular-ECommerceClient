@@ -1,0 +1,12 @@
+.admin {
+  &-container {
+    width: 98vw;
+    height: 90vh;
+    margin: auto;
+    border: 1px solid #555;
+
+    &__sidebar {
+        width: 20%;
+    }
+  }
+}
