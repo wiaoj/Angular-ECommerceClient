@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
-import { LayoutComponent } from './admin/layout/layout.component';
-import { HomeComponent } from './ui/components/home/home.component';
+import { DashboardComponent } from './components/admin/components/dashboard/dashboard.component';
+import { LayoutComponent } from './components/admin/layout/layout.component';
+import { HomeComponent } from './components/ui/components/home/home.component';
 
+const ADMIN_COMPONENTS_PATH = "./admin/components/";
+const UI_COMPONENTS_PATH = "./components/ui/components/";
 const routes: Routes = [
   {
     path: 'admin',
@@ -14,7 +16,7 @@ const routes: Routes = [
       {
         path: 'customers',
         loadChildren: () =>
-          import('./admin/components/customers/customers.module').then(
+          import(`${ADMIN_COMPONENTS_PATH}customers/customers.module`).then(
             (module) => module.CustomersModule
             //lazy loadinge de sebep oluyor
           ),
@@ -22,21 +24,21 @@ const routes: Routes = [
       {
         path: 'products',
         loadChildren: () =>
-          import('./admin/components/products/products.module').then(
+          import(`${ADMIN_COMPONENTS_PATH}products/products.module`).then(
             (module) => module.ProductsModule
           ),
       },
       {
         path: 'orders',
         loadChildren: () =>
-          import('./admin/components/orders/orders.module').then(
+          import(`${ADMIN_COMPONENTS_PATH}orders/orders.module`).then(
             (module) => module.OrdersModule
           ),
       },
       {
         path: 'dashboard',
         loadChildren: () =>
-          import('./admin/components/dashboard/dashboard.module').then(
+          import(`${ADMIN_COMPONENTS_PATH}dashboard/dashboard.module`).then(
             (module) => module.DashboardModule
           ),
       },
@@ -50,14 +52,14 @@ const routes: Routes = [
   {
     path: 'basket',
     loadChildren: () =>
-      import('./ui/components/baskets/baskets.module').then(
+      import(`${UI_COMPONENTS_PATH}baskets/baskets.module`).then(
         (module) => module.BasketsModule
       ),
   },
   {
     path: 'products',
     loadChildren: () =>
-      import('./ui/components/products/products.module').then(
+      import(`${UI_COMPONENTS_PATH}products/products.module`).then(
         (module) => module.ProductsModule
       ),
   },
