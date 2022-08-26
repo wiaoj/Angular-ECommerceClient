@@ -16,25 +16,25 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a routerLink="" class="nav-link active" aria-current="page">
-            <mat-icon color="primary">home</mat-icon>
+            <!-- <mat-icon color="primary">home</mat-icon> -->
             Home
           </a>
         </li>
         <li class="nav-item">
           <a routerLink="products" class="nav-link">
-            <mat-icon color="primary">category</mat-icon>
+            <!-- <mat-icon color="primary">category</mat-icon> -->
             Products
           </a>
         </li>
         <li class="nav-item">
           <a routerLink="basket" class="nav-link">
-            <mat-icon color="accent">shopping_cart</mat-icon>
+            <!-- <mat-icon color="accent">shopping_cart</mat-icon> -->
             Baskets
           </a>
         </li>
         <li class="nav-item">
           <a routerLink="admin" class="nav-link btn btn-outline-warning">
-            <mat-icon color="warn">admin_panel_settings</mat-icon>
+            <!-- <mat-icon color="warn">admin_panel_settings</mat-icon> -->
             Yönetim Paneli
           </a>
         </li>
@@ -75,3 +75,24 @@
 <div class="container-md">
   <router-outlet></router-outlet>
 </div>
+
+<ngx-spinner
+  name="line-spin-fade"
+  bdColor="rgba(0,0,0,0.6)"
+  type="line-spin-fade"
+  size="large"
+  color="#26d2c0"
+  [fullScreen]="true"
+>
+  <p style="color: white; font-size: 2rem;">Yükleniyor...</p>
+</ngx-spinner>
+<ngx-spinner
+  name="square-jelly-box"
+  bdColor="rgba(0,0,0,0.6)"
+  type="square-jelly-box"
+  size="large"
+  color="#26d2c0"
+  [fullScreen]="true"
+>
+  <p style="color: white;font-size: 2rem;">Yükleniyor...</p>
+</ngx-spinner>

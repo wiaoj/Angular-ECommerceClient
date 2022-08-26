@@ -33,7 +33,9 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/alertifyjs/build/css/alertify.min.css",
               "./node_modules/alertifyjs/build/css/themes/semantic.min.css",
-              "./node_modules/ngx-toastr/toastr.css"
+              "./node_modules/ngx-toastr/toastr.css",
+              "./node_modules/ngx-spinner/animations/square-jelly-box.css",
+              "./node_modules/ngx-spinner/animations/line-spin-fade.css"
             ],
             "scripts": [
               "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",

@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { OrdersComponent } from './orders.component';
 import { RouterModule } from '@angular/router';
 
-
-
 @NgModule({
   declarations: [
     OrdersComponent
