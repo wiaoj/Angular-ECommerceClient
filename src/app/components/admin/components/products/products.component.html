@@ -1,7 +1,12 @@
-<ul>
-    <li *ngFor="let product of products">
-        <span>{{product.name}}</span> 
-        Stock ==> {{product.stock}}
-        <hr> 
-    </li>
-</ul>
+<mat-drawer-container class="product-container" autosize>
+  <mat-drawer #drawer class="product-sidenav" mode="side">
+    <app-create-product></app-create-product>
+  </mat-drawer>
+
+  <div class="product-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+    <app-list-products></app-list-products>
+  </div>
+</mat-drawer-container>

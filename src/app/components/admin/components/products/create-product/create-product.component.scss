@@ -1,0 +1,20 @@
+input[matInput] {
+  width: 100% !important;
+  &.createProductStock,
+  &.createProductPrice {
+    text-align: right;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      display: none;
+
+      & {
+        -moz-appearance: textfield;
+      }
+    }
+  }
+}
+
+button[mat-stroked-button] {
+  width: 100%;
+}
