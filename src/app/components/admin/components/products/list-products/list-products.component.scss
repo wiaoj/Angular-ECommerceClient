@@ -1,0 +1,9 @@
+table.list-product {
+  width: 100%;
+}
+
+tr {
+  &:not([mat-header-row]):hover {
+    background: whitesmoke;
+  }
+}

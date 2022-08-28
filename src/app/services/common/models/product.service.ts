@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Create_Product } from 'src/app/contracts/Create_Product';
+import { List_Product } from 'src/app/contracts/List_Product';
 import { HttpClientService } from '../httpClient/http-client.service';
 
 @Injectable({
@@ -9,7 +10,11 @@ import { HttpClientService } from '../httpClient/http-client.service';
 export class ProductService {
   constructor(private httpClientService: HttpClientService) {}
 
-  create(product: Create_Product, successCallBack?: any, errorCallBack?: any) {
+  create(
+    product: Create_Product,
+    successCallBack?: () => void,
+    errorCallBack?: (errorMessage: string) => void
+  ): void {
     this.httpClientService
       .post(
         {
@@ -19,21 +24,46 @@ export class ProductService {
       )
       .subscribe(
         (result) => {
-          successCallBack();
+          if (successCallBack) successCallBack();
         },
         (errorResponse: HttpErrorResponse) => {
           const _error: Array<{ key: string; value: Array<string> }> =
             errorResponse.error;
 
-          let message:string = '';
+          let message: string = '';
           _error.forEach((v, index) => {
             v.value.forEach((_v, _index) => {
               message += `${_v}<br>`;
             });
           });
-          errorCallBack(message);
-        });
+          if (errorCallBack) errorCallBack(message);
+        }
+      );
+  }
+
+  async read(
+    page:number = 0,
+    size:number = 5,
+    successCallBack?: () => void,
+    errorCallBack?: (message: string) => void
+  ) : Promise<{totalCount: number, products:List_Product[]}> {
+    const promiseData: Promise<{totalCount: number, products:List_Product[]}> = this.httpClientService
+      .get<{totalCount: number, products:List_Product[]}>({
+        controller: 'products',
+        queryString: `page=${page}&size=${size}`,
+      })
+      .toPromise();
+
+    promiseData
+      .then((data) => {
+        if(successCallBack) successCallBack()
+      })
+      .catch((errorResponse: HttpErrorResponse) =>
+        {
+          if(errorCallBack) errorCallBack(errorResponse.message)
+        }
+      );
+
+    return await promiseData;
   }
 }
-
-export interface ModelService {}

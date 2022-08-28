@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ListProductsComponent } from './list-products/list-products.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [
     ProductsComponent,
@@ -23,6 +25,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
 })
 export class ProductsModule {}

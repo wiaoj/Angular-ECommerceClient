@@ -1,11 +1,11 @@
 <mat-drawer-container class="product-container" autosize>
   <mat-drawer #drawer class="product-sidenav" mode="side">
-    <app-create-product></app-create-product>
+    <app-create-product (createdProduct)="createdProduct($event)"></app-create-product>
   </mat-drawer>
 
   <div class="product-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
+    <button type="button" mat-stroked-button (click)="drawer.toggle()">
+      Add Product
     </button>
     <app-list-products></app-list-products>
   </div>
