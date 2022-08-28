@@ -36,6 +36,18 @@ export class CreateProductComponent extends BaseComponent implements OnInit {
     create_product.stock = parseInt(stock.value);
     create_product.price = parseFloat(price.value);
 
+    //! Validation örneği reactive form geçmeden önce böyle olacak
+    if(!name.value) {
+      this.alertify.message("Lütfen ürün adını giriniz!", {
+        dismissOthers:true,
+        messageType:AlertifyMessageType.Error,
+        position: AlertifyPosition.TopRight
+      });
+      return
+    }
+
+
+
     this.productService.create(create_product, () => {
       this.hideSpinner(SpinnerType.LineSpinFade);
       this.alertify.message('Ürün başarıyla eklenmiştir.', {
@@ -43,6 +55,12 @@ export class CreateProductComponent extends BaseComponent implements OnInit {
         messageType: AlertifyMessageType.Success,
         position: AlertifyPosition.TopRight,
       });
+    }, (errorMessage: any) => {
+        this.alertify.message(errorMessage, {
+          dismissOthers:true,
+          messageType:AlertifyMessageType.Error,
+          position: AlertifyPosition.TopRight
+        });
     });
   }
 }
