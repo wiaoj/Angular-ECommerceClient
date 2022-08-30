@@ -5,7 +5,8 @@ import { UiModule } from './ui/ui.module';
 import { BaseComponent } from './base.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     AdminModule, 
