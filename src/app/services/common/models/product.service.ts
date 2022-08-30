@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Create_Product } from 'src/app/contracts/Create_Product';
-import { List_Product } from 'src/app/contracts/List_Product';
+import { firstValueFrom, Observable } from 'rxjs';
+import { Create_Product } from 'src/app/contracts/product/Create_Product';
+import { List_Product } from 'src/app/contracts/product/List_Product';
 import { HttpClientService } from '../httpClient/http-client.service';
 
 @Injectable({
@@ -42,13 +43,16 @@ export class ProductService {
   }
 
   async read(
-    page:number = 0,
-    size:number = 5,
+    page: number = 0,
+    size: number = 5,
     successCallBack?: () => void,
     errorCallBack?: (message: string) => void
-  ) : Promise<{totalCount: number, products:List_Product[]}> {
-    const promiseData: Promise<{totalCount: number, products:List_Product[]}> = this.httpClientService
-      .get<{totalCount: number, products:List_Product[]}>({
+  ): Promise<{ totalCount: number; products: List_Product[] }> {
+    const promiseData: Promise<{
+      totalCount: number;
+      products: List_Product[];
+    }> = this.httpClientService
+      .get<{ totalCount: number; products: List_Product[] }>({
         controller: 'products',
         queryString: `page=${page}&size=${size}`,
       })
@@ -56,14 +60,24 @@ export class ProductService {
 
     promiseData
       .then((data) => {
-        if(successCallBack) successCallBack()
+        if (successCallBack) successCallBack();
       })
-      .catch((errorResponse: HttpErrorResponse) =>
-        {
-          if(errorCallBack) errorCallBack(errorResponse.message)
-        }
-      );
+      .catch((errorResponse: HttpErrorResponse) => {
+        if (errorCallBack) errorCallBack(errorResponse.message);
+      });
 
     return await promiseData;
+  }
+
+  async delete(id: string) {
+    const deleteObservable: Observable<any> =
+      this.httpClientService.delete<any>(
+        {
+          controller: 'products',
+        },
+        id
+      );
+
+      await firstValueFrom(deleteObservable);
   }
 }

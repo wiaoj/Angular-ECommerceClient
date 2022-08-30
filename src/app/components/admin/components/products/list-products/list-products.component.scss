@@ -6,4 +6,10 @@ tr {
   &:not([mat-header-row]):hover {
     background: whitesmoke;
   }
+
+  // & mat-icon.button {
+  //   &:hover {
+      
+  //   }
+  // }
 }

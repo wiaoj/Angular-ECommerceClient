@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/components/base.component';
-import { List_Product } from 'src/app/contracts/List_Product';
+import { List_Product } from 'src/app/contracts/product/List_Product';
 import {
   AlertifyMessageType,
   AlertifyOptions,
@@ -11,7 +11,7 @@ import {
   AlertifyService,
 } from 'src/app/services/admin/alertify/alertify.service';
 import { ProductService } from 'src/app/services/common/models/product.service';
-
+declare var $:any;
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
@@ -32,6 +32,8 @@ export class ListProductsComponent extends BaseComponent implements OnInit {
     'price',
     'createdDate',
     'updatedDate',
+    "update",
+    "delete",
   ];
 
   dataSource: MatTableDataSource<List_Product>;
@@ -59,4 +61,5 @@ export class ListProductsComponent extends BaseComponent implements OnInit {
   async pageChanged() {
     await this.getProducts();
   }
+
 }
