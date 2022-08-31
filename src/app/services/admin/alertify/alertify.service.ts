@@ -7,8 +7,8 @@ export class AlertifyService {
   constructor() {}
 
   message(message: String, options: Partial<AlertifyOptions>): void {
-    alertify.set('notifier', 'delay', options.delay);
-    alertify.set('notifier', 'position', options.position);
+    alertify.set('notifier', 'delay', options.delay ? options.delay : 4);
+    alertify.set('notifier', 'position', options.position ? options.position : AlertifyPosition.TopRight);
     return options.dismissOthers
       ? alertify[options.messageType!](message).dismissOthers()
       : alertify[options.messageType!](message);
@@ -20,10 +20,10 @@ export class AlertifyService {
 }
 
 export class AlertifyOptions {
-  messageType: AlertifyMessageType = AlertifyMessageType.Message;
-  position: AlertifyPosition = AlertifyPosition.TopRight;
-  delay: Number = 4;
-  dismissOthers = true;
+  messageType: AlertifyMessageType;
+  position: AlertifyPosition;
+  delay: Number;
+  dismissOthers: Boolean;
 }
 
 export enum AlertifyMessageType {

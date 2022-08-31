@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import {
   Directive,
   ElementRef,
@@ -33,7 +34,6 @@ export class DeleteDirective {
     private element: ElementRef,
     private _renderer: Renderer2,
     private httpClientService: HttpClientService,
-    private productService: ProductService,
     public dialog: MatDialog,
     private alertify: AlertifyService
   ) {
@@ -47,6 +47,7 @@ export class DeleteDirective {
   }
 
   @Input() id: string;
+  @Input() controller: string;
   @Output() callback: EventEmitter<any> = new EventEmitter();
 
   @HostListener('click') //kullanılan dom nesnesine verilen olay gerçekleşince işaretlenne metod gerçekleştirilir
@@ -54,24 +55,40 @@ export class DeleteDirective {
     this.openDialog(async () => {
       this.spinner.show(SpinnerType.LineSpinFade);
       const td: HTMLTableCellElement = this.element.nativeElement;
-      const x = await this.productService.delete(this.id);
-      //TODO: Belki düzeltilecek Promise olarak
-      $(td.parentElement).animate(
-        {
-          opacity: 0,
-          left: '+=50',
-          height: 'toogle',
-        },
-        700,
-        () => {
-          this.callback.emit();
-          this.alertify.message('Silme işlemi başarılı!', {
-            dismissOthers: true,
-            messageType: AlertifyMessageType.Success,
-            position: AlertifyPosition.TopRight,
-          });
-        }
-      );
+      await this.httpClientService
+        .delete(
+          {
+            controller: this.controller,
+          },
+          this.id
+        )
+        .subscribe(
+          (data) => {
+            //TODO: Belki düzeltilecek Promise olarak
+            $(td.parentElement).animate(
+              {
+                opacity: 0,
+                left: '+=50',
+                height: 'toogle',
+              },
+              700,
+              () => {
+                this.callback.emit();
+                this.alertify.message('Silme işlemi başarılı!', {
+                  dismissOthers: true,
+                  messageType: AlertifyMessageType.Success,
+                });
+              }
+            );
+          },
+          (errorResponse: HttpErrorResponse) => {
+            this.spinner.hide(SpinnerType.LineSpinFade);
+            this.alertify.message("Silme işlemi yapılırken beklenmeyen bir hata ile karşılaşıldı", {
+              dismissOthers:true,
+              messageType: AlertifyMessageType.Error,
+            })
+          }
+        );
     });
   }
 
@@ -85,11 +102,11 @@ export class DeleteDirective {
     dialogRef.afterClosed().subscribe((result) => {
       if (result === DeleteState.Yes) {
         afterClosed();
-      } else {
+      } 
+      else {
         this.alertify.message('Silme işlemi iptal edildi!', {
           dismissOthers: true,
           messageType: AlertifyMessageType.Warning,
-          position: AlertifyPosition.TopRight,
         });
       }
     });
