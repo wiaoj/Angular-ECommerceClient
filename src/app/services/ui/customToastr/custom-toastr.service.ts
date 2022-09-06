@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CustomToastrService {
   constructor(private toastr: ToastrService) {}
 
-  message(title: string, message: string, options: Partial<ToastrOptions>) {
+  message(message: string, title: string, options: Partial<ToastrOptions>) {
     this.toastr[options.messageType!](message, title, {
       positionClass: options.position ?? ToastrPosition.TopRight,
     });

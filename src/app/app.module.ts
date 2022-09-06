@@ -6,6 +6,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
+import { FileUploadComponent } from './services/common/file-upload/file-upload.component';
+import { FileUploadModule } from './services/common/file-upload/file-upload.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +18,7 @@ import { ComponentsModule } from './components/components.module';
     ComponentsModule,
     NgxSpinnerModule,
     HttpClientModule,
+    FileUploadModule
   ],
   providers: [
     {
