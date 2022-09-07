@@ -60,12 +60,14 @@ export class CreateProductComponent extends BaseComponent implements OnInit {
         this.hideSpinner(SpinnerType.LineSpinFade);
         this.alertify.message('Ürün başarıyla eklenmiştir.', {
           messageType: AlertifyMessageType.Success,
+          dismissOthers: true,
         });
         this.createdProduct.emit(create_product);
       },
       (errorMessage: any) => {
         this.alertify.message(errorMessage, {
           messageType: AlertifyMessageType.Error,
+          dismissOthers: true,
         });
       }
     );

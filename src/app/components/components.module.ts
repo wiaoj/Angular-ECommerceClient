@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminModule } from './admin/admin.module';
 import { UiModule } from './ui/ui.module';
-import { BaseComponent } from './base.component';
+import { DialogModule } from '@angular/cdk/dialog';
 
 @NgModule({
-  declarations: [
-  ],
+  declarations: [],
   imports: [
-    CommonModule,
+    CommonModule, 
     AdminModule, 
-    UiModule]
+    UiModule,
+  ],
 })
 export class ComponentsModule {}
