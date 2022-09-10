@@ -52,11 +52,12 @@ export class DeleteDirective {
   @Input() controller: string;
   @Output() callback: EventEmitter<any> = new EventEmitter();
 
-  @HostListener('click') //kullanılan dom nesnesine verilen olay gerçekleşince işaretlenne metod gerçekleştirilir
+  @HostListener('click') //kullanılan dom nesnesine verilen olay gerçekleşince işaretlenen metod gerçekleştirilir
   async onclick() {
     this.dialogService.openDialog({
       componentType: DeleteDialogComponent,
       data:DeleteState.Yes,
+      isAdminPage: true,
       afterClosed: async () => {
         this.spinner.show(SpinnerType.LineSpinFade);
         const td: HTMLTableCellElement = this.element.nativeElement;
