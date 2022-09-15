@@ -1,0 +1,29 @@
+.product-image-card {
+  max-width: 400px;
+}
+
+.product-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.image-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem;
+  & mat-card-content {
+    & >p {
+      text-align: center;
+    }
+  }
+  & mat-card-actions {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
