@@ -42,6 +42,8 @@ export class FileUploadComponent {
     const fileData: FormData = new FormData();
 
     for (const file of files) {
+      console.log(file);
+      
       // Is it a file?
       if (file.fileEntry.isFile) {
         const fileEntry = file.fileEntry as FileSystemFileEntry;
@@ -52,10 +54,10 @@ export class FileUploadComponent {
       } else {
         // It was a directory (empty directories are added, otherwise only files)
         const fileEntry = file.fileEntry as FileSystemDirectoryEntry;
-        console.log(file.relativePath, fileEntry);
       }
     }
-
+    
+    
     this.dialogService.openDialog({
       componentType: FileUploadDialogComponent,
       data: FileUploadDialogState.Yes,
