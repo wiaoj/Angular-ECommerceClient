@@ -1,0 +1,74 @@
+<div class="container-xxl justify-content-center">
+  <div class="row row-cols-auto mt-5">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+        <div class="mb-3">
+          <label for="nameSurname" class="form-label">Name Surname</label>
+          <input
+            formControlName="nameSurname"
+            type="text"
+            class="form-control"
+            id="nameSurname"
+            aria-describedby="nameSurnameHelp"
+            placeholder="Name Surname"
+          />
+          <div id="nameSurnameHelp" class="form-text">-</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="userName" class="form-label">User Name</label>
+          <input
+            formControlName="userName"
+            type="text"
+            class="form-control"
+            id="userName"
+            aria-describedby="userNameHelp"
+            placeholder="User Name"
+          />
+          <div id="userNameHelp" class="form-text">-</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            formControlName="email"
+            type="email"
+            class="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            placeholder="Email"
+          />
+          <div id="emailHelp" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="password2" class="form-label">Password</label>
+          <input
+            formControlName="password2"
+            type="password"
+            class="form-control"
+            id="password2"
+            placeholder="Password"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary p-2">Register</button>
+      </form>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>
