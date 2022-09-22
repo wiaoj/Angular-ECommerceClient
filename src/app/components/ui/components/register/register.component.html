@@ -12,8 +12,11 @@
             id="nameSurname"
             aria-describedby="nameSurnameHelp"
             placeholder="Name Surname"
+            [ngClass]="{'is-invalid': submitted && component.nameSurname.errors}"
           />
-          <div id="nameSurnameHelp" class="form-text">-</div>
+          <!-- noPropertyAccessFromIndexSignature : false => yapınca üst kısım hata vermiyor (tsconfig.json içinde bulunuyor) -->
+          <div id="nameSurnameHelp" class="form-text invalid-feedback" *ngIf="submitted && component.nameSurname.errors?.required">Please write your name</div>
+          <div id="nameSurnameHelp" class="form-text invalid-feedback" *ngIf="submitted && (component.nameSurname.errors?.minlength || component.nameSurname.errors?.maxlength)">Name 3 - 50 character</div>
         </div>
 
         <div class="mb-3">
@@ -25,8 +28,9 @@
             id="userName"
             aria-describedby="userNameHelp"
             placeholder="User Name"
+            [ngClass]="{'is-invalid': submitted && component.userName.errors}"
           />
-          <div id="userNameHelp" class="form-text">-</div>
+          <div id="userNameHelp" class="form-text invalid-feedback" *ngIf="submitted && component.userName.errors?.required">Please write your username</div>
         </div>
 
         <div class="mb-3">
@@ -38,10 +42,10 @@
             id="email"
             aria-describedby="emailHelp"
             placeholder="Email"
+            [ngClass]="{'is-invalid': submitted && component.email.errors}"
           />
-          <div id="emailHelp" class="form-text">
-            We'll never share your email with anyone else.
-          </div>
+          <div id="emailHelp" class="form-text invalid-feedback" *ngIf="submitted && component.email.errors?.required">Please write your email</div>
+          <div id="emailHelp" class="form-text invalid-feedback" *ngIf="submitted && component.email.errors?.email">Please write your email correct</div>
         </div>
 
         <div class="mb-3">
@@ -52,18 +56,22 @@
             class="form-control"
             id="password"
             placeholder="Password"
+            [ngClass]="{'is-invalid': submitted && component.password.errors}"
           />
         </div>
 
         <div class="mb-3">
-          <label for="password2" class="form-label">Password</label>
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
           <input
-            formControlName="password2"
+            formControlName="confirmPassword"
             type="password"
             class="form-control"
-            id="password2"
-            placeholder="Password"
+            id="confirmPassword"
+            aria-describedby="confirmPasswordHelp"
+            placeholder="Confirm Password"
+            [ngClass]="{'is-invalid': submitted && component.confirmPassword.errors}"
           />
+          <div *ngIf="submitted && form.hasError('notSame')">Please check your password</div>
         </div>
 
         <button type="submit" class="btn btn-primary p-2">Register</button>
