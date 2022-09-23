@@ -61,15 +61,15 @@
         </div>
 
         <div class="mb-3">
-          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <label for="passwordConfirm" class="form-label">Confirm Password</label>
           <input
-            formControlName="confirmPassword"
+            formControlName="passwordConfirm"
             type="password"
             class="form-control"
-            id="confirmPassword"
-            aria-describedby="confirmPasswordHelp"
+            id="passwordConfirm"
+            aria-describedby="passwordConfirmHelp"
             placeholder="Confirm Password"
-            [ngClass]="{'is-invalid': submitted && component.confirmPassword.errors}"
+            [ngClass]="{'is-invalid': submitted && component.passwordConfirm.errors}"
           />
           <div *ngIf="submitted && form.hasError('notSame')">Please check your password</div>
         </div>
