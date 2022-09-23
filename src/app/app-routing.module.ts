@@ -64,6 +64,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'login',
+    loadChildren: () =>
+      import(`${UI_COMPONENTS_PATH}login/login.module`).then(
+        (module) => module.LoginModule
+      ),
+  },
+  {
     path: 'register',
     loadChildren: () =>
       import(`${UI_COMPONENTS_PATH}register/register.module`).then(

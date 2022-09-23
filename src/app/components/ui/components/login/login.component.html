@@ -1,0 +1,38 @@
+<div class="container-xxl justify-content-center">
+  <div class="row row-cols-auto mt-5">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <div class="mb-3">
+          <label for="userName" class="form-label">Username & Email</label>
+          <input
+          #txtUsernameOrEmail
+            formControlName="userName"
+            type="text"
+            class="form-control"
+            id="userName"
+            aria-describedby="userNameHelp"
+            placeholder="Username or email"
+          />
+          <div
+            id="userNameHelp"
+            class="form-text invalid-feedback"
+          >
+            Please write your username
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+          #txtPassword
+            formControlName="password"
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary p-2" (click)="login(txtUsernameOrEmail.value, txtPassword.value)">Login</button>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>
