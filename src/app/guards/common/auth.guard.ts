@@ -10,6 +10,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { SpinnerType } from 'src/app/components/base.component';
+import { _isAuthenticated } from 'src/app/services/common/auth.service';
 import {
   CustomToastrService,
   ToastrMessageType,
@@ -24,7 +25,7 @@ export class AuthGuard implements CanActivate {
     private jwtHelper: JwtHelperService,
     private router: Router,
     private toastrService: CustomToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
   ) {}
 
   canActivate(
@@ -41,19 +42,20 @@ export class AuthGuard implements CanActivate {
     // Her objenin canActivate : [] şeklinde bir dizisi mevcut
     // Kullandığımız AuthGuardı kullanmak için canActivate : [AuthGuard] şeklinde kullanırız
 
-    const token: string = localStorage.getItem('accessToken'); // LocalStorage'den tokeni çağırıyoruz varsa gelir yoksa null döner
-    // npm i @auth0/angular-jwt ile interceptor yazmadan bu kütüphane sayesinde kullanabiliyoruz
+    // const token: string = localStorage.getItem('accessToken'); // LocalStorage'den tokeni çağırıyoruz varsa gelir yoksa null döner
+    // // npm i @auth0/angular-jwt ile interceptor yazmadan bu kütüphane sayesinde kullanabiliyoruz
 
-    //const decodeToken = this.jwtHelper.decodeToken(token); // Tokenin içindeki bilgileri görürüz
-    //const expirationDate: Date = this.jwtHelper.getTokenExpirationDate(token); // Token bitiş tarihini görürüz
-    let expired: boolean; // = this.jwtHelper.isTokenExpired(token); // Tokenin süresinin bitip bitmediğini görebiliriz
+    // //const decodeToken = this.jwtHelper.decodeToken(token); // Tokenin içindeki bilgileri görürüz
+    // //const expirationDate: Date = this.jwtHelper.getTokenExpirationDate(token); // Token bitiş tarihini görürüz
+    // let expired: boolean; // = this.jwtHelper.isTokenExpired(token); // Tokenin süresinin bitip bitmediğini görebiliriz
 
-    try {
-      expired = this.jwtHelper.isTokenExpired(token);
-    } catch (error) {
-      expired = true;
-    }
-    if (!token || expired) {
+    // try {
+    //   expired = this.jwtHelper.isTokenExpired(token);
+    // } catch (error) {
+    //   expired = true;
+    // }
+
+    if (!_isAuthenticated) {
       this.router.navigate(['login'], {
         queryParams: { returnUrl: state.url },
       }); //login modülde path "" olduğu için direkt böyle yönlendirdir path "wiaoj" olsaydı wiaoj/login şeklinde vermeliydik

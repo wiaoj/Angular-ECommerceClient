@@ -32,16 +32,15 @@
             Baskets
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="authService.isAuthenticated">
           <a routerLink="admin" class="nav-link btn btn-outline-warning">
             <!-- <mat-icon color="warn">admin_panel_settings</mat-icon> -->
             Admin Panel
           </a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf="!authService.isAuthenticated">
           <a
             class="nav-link dropdown-toggle"
-            href="#"
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
@@ -53,8 +52,8 @@
             <li><a routerLink="register" class="dropdown-item">Register</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
+        <li class="nav-item" *ngIf="authService.isAuthenticated">
+          <a class="btn btn-danger" (click)="signOut()">Log-out</a>
         </li>
       </ul>
       <form class="d-flex" role="search">
