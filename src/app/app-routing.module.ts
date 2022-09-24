@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/admin/components/dashboard/dashboard.component';
 import { LayoutComponent } from './components/admin/layout/layout.component';
 import { HomeComponent } from './components/ui/components/home/home.component';
+import { AuthGuard } from './guards/common/auth.guard';
 
 const ADMIN_COMPONENTS_PATH = './components/admin/components/';
 const UI_COMPONENTS_PATH = './components/ui/components/';
@@ -12,7 +13,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       //boş verdik linkde admin olunca direkt buraya ulaşıyor
-      { path: '', component: DashboardComponent },
+      { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
       {
         path: 'customers',
         loadChildren: () =>
@@ -20,6 +21,7 @@ const routes: Routes = [
             (module) => module.CustomersModule
             //lazy loadinge de sebep oluyor
           ),
+        canActivate: [AuthGuard],
       },
       {
         path: 'products',
@@ -27,6 +29,7 @@ const routes: Routes = [
           import(`${ADMIN_COMPONENTS_PATH}products/products.module`).then(
             (module) => module.ProductsModule
           ),
+        canActivate: [AuthGuard],
       },
       {
         path: 'orders',
@@ -34,6 +37,7 @@ const routes: Routes = [
           import(`${ADMIN_COMPONENTS_PATH}orders/orders.module`).then(
             (module) => module.OrdersModule
           ),
+        canActivate: [AuthGuard],
       },
       {
         path: 'dashboard',
@@ -41,8 +45,10 @@ const routes: Routes = [
           import(`${ADMIN_COMPONENTS_PATH}dashboard/dashboard.module`).then(
             (module) => module.DashboardModule
           ),
+        canActivate: [AuthGuard],
       },
     ],
+    canActivate: [AuthGuard],
   },
   {
     //anasayfa çalışmalarında direkt component veriliyor
