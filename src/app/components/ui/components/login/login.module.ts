@@ -4,7 +4,7 @@ import { LoginComponent } from './login.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [],
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: LoginComponent }]),
