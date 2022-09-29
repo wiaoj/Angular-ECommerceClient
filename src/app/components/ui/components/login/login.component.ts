@@ -1,53 +1,74 @@
-import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { BaseComponent, SpinnerType } from 'src/app/components/base.component';
-import { AuthService } from 'src/app/services/common/auth.service';
-import { UserService } from 'src/app/services/common/models/user.service';
+import {
+	FacebookLoginProvider,
+	SocialAuthService,
+	SocialUser,
+} from "@abacritt/angularx-social-login";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { NgxSpinnerService } from "ngx-spinner";
+import { BaseComponent, SpinnerType } from "src/app/components/base.component";
+import { AuthService } from "src/app/services/common/auth.service";
+import { UserService } from "src/app/services/common/models/user.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+	selector: "app-login",
+	templateUrl: "./login.component.html",
+	styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent extends BaseComponent implements OnInit {
-  constructor(
-    private userService: UserService,
-    spinner: NgxSpinnerService,
-    private authService: AuthService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private socialAuthService: SocialAuthService,
-  ) {
-    super(spinner);
-    socialAuthService.authState.subscribe(async (user: SocialUser) => {
-      this.showSpinner(SpinnerType.SquareJellyBox);
-      await userService.googleLogin(user, () => {
-        this.authService.identityCheck();
-        this.hideSpinner(SpinnerType.SquareJellyBox)
-      })
-      
-    });
-  }
+	constructor(
+		private userService: UserService,
+		spinner: NgxSpinnerService,
+		private authService: AuthService,
+		private activatedRoute: ActivatedRoute,
+		private router: Router,
+		private socialAuthService: SocialAuthService
+	) {
+		super(spinner);
+		socialAuthService.authState.subscribe(async (user: SocialUser) => {
+			this.showSpinner(SpinnerType.SquareJellyBox);
+			console.log(user);
 
-  ngOnInit(): void {}
+			switch (user.provider) {
+				case "GOOGLE":
+					await userService.googleLogin(user, () => {
+						this.authService.identityCheck();
+						this.hideSpinner(SpinnerType.SquareJellyBox);
+					});
+					break;
+				case "FACEBOOK":
+					await userService.facebookLogin(user, () => {
+            console.log(user);
+            
+						this.authService.identityCheck();
+						this.hideSpinner(SpinnerType.SquareJellyBox);
+					});
+					break;
+			}
+		});
+	}
 
-  async login(usernameOrEmail: string, password: string) {
-    this.showSpinner(SpinnerType.SquareJellyBox);
-    await this.userService.login(usernameOrEmail, password, () => {
-      this.authService.identityCheck(); // içindeki kontrolleri yapıp global değişkenimizin durumunu değiştiriyoruz
+	ngOnInit(): void {}
 
-      // Route üzerindeki returnUrl kısmını okuyoruz
-      this.activatedRoute.queryParams.subscribe(queryParams => {
-       const returnUrl : string= queryParams["returnUrl"]; // return Url i okuyoruz
-        if (returnUrl) // Eğer url var ise 
-          this.router.navigate([returnUrl]); // Url'e yönlendiriyoruz
-          // Url yoksa hiçbir şey yapmıyoruz xd
-        
-      })
+	async login(usernameOrEmail: string, password: string) {
+		this.showSpinner(SpinnerType.SquareJellyBox);
+		await this.userService.login(usernameOrEmail, password, () => {
+			this.authService.identityCheck(); // içindeki kontrolleri yapıp global değişkenimizin durumunu değiştiriyoruz
 
-      this.hideSpinner(SpinnerType.SquareJellyBox);
-    });
-  }
+			// Route üzerindeki returnUrl kısmını okuyoruz
+			this.activatedRoute.queryParams.subscribe((queryParams) => {
+				const returnUrl: string = queryParams["returnUrl"]; // return Url i okuyoruz
+				if (returnUrl)
+					// Eğer url var ise
+					this.router.navigate([returnUrl]); // Url'e yönlendiriyoruz
+				// Url yoksa hiçbir şey yapmıyoruz xd
+			});
+
+			this.hideSpinner(SpinnerType.SquareJellyBox);
+		});
+	}
+
+	facebookLogin() {
+		this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+	}
 }

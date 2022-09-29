@@ -1,4 +1,5 @@
 import {
+  FacebookLoginProvider,
   GoogleLoginProvider,
   SocialAuthServiceConfig,
   SocialLoginModule,
@@ -18,7 +19,7 @@ import { LoginComponent } from './components/ui/components/login/login.component
   declarations: [
     AppComponent,
     LoginComponent, // Google login yapacağımız için ilgili kütüphane sadece app.module içerisinde çalıştığı için mecburan buraya taşıdık
-    // login componenti direkt olarak app module bağladık çünkü ilgili kütüphane app module'da olmak 
+    // login componenti direkt olarak app module bağladık çünkü ilgili kütüphane app module'da olmak
   ],
   imports: [
     BrowserModule,
@@ -51,7 +52,11 @@ import { LoginComponent } from './components/ui/components/login/login.component
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
               '544170587397-irgcfffm987ckuguk3b7vrt450oe9b15.apps.googleusercontent.com'
-            ),
+            ), // https://console.cloud.google.com/
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('3278540179047559'), // https://developers.facebook.com
           },
         ],
         onError: (error) => console.log(error),
