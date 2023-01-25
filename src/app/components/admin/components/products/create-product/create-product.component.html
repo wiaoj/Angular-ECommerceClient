@@ -1,7 +1,7 @@
 <mat-form-field appearance="outline">
   <mat-label>Name</mat-label>
   <input matInput type="text" required placeholder="Product name" #Name />
-  <mat-hint>Hint</mat-hint>
+  <!-- <mat-hint>Hint</mat-hint> -->
 </mat-form-field>
 <mat-form-field appearance="outline">
   <mat-label>Stock</mat-label>
@@ -13,7 +13,7 @@
     class="createProductStock"
     #Stock
   />
-  <mat-hint>Hint</mat-hint>
+  <!-- <mat-hint>Hint</mat-hint> -->
 </mat-form-field>
 <mat-form-field appearance="outline">
   <mat-label>Price</mat-label>
@@ -25,9 +25,6 @@
     class="createProductPrice"
     #Price
   />
-  <!-- <span matPrefix>$&nbsp;</span> -->
-  <mat-hint>Hint</mat-hint>
-  <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
 </mat-form-field>
 
 <button mat-stroked-button color="primary" (click)="create(Name, Stock, Price)">

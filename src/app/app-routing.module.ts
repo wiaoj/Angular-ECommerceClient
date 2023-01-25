@@ -4,6 +4,7 @@ import { DashboardComponent } from './components/admin/components/dashboard/dash
 import { LayoutComponent } from './components/admin/layout/layout.component';
 import { HomeComponent } from './components/ui/components/home/home.component';
 import { AuthGuard } from './guards/common/auth.guard';
+import { _isAuthenticated } from './services/common/auth.service';
 
 const ADMIN_COMPONENTS_PATH = './components/admin/components/';
 const UI_COMPONENTS_PATH = './components/ui/components/';

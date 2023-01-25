@@ -1,14 +1,27 @@
-li {
-    padding: .2rem;
-    a.nav-link {
-        display: flex;
-        align-items: center;
-        
-        &:not([class*="outline"]){
-        border-bottom: 2px solid transparent;}
-    
-        &:not([class*="outline"]):hover {
-            border-bottom: 2px solid green;
-        }
-    }
+li.nav-item {
+	padding: 0.2rem;
+	a {
+		&.nav-link {
+			display: flex;
+			align-items: center;
+
+			&:not([class*="outline"]) {
+				border-bottom: 2px solid transparent;
+
+				&:hover {
+					border-bottom: 2px solid green;
+				}
+			}
+		}
+
+		&.log-out {
+			&:not([class*="outline"]) {
+				border-bottom: 2px solid transparent;
+
+				&:hover {
+					border-bottom: 2px solid red;
+				}
+			}
+		}
+	}
 }
