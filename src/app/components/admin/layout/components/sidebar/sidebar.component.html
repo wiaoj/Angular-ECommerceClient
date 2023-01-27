@@ -2,19 +2,19 @@
 <!-- baştaki / ise origine kadar olan tüm pathi silip sadece admin yazar -->
 <!-- linklerin çalışması için components.module.ts içine routermodule eklenmelidir sidebar onun içinde olduğu için -->
 <mat-list role="list">
-    <a mat-list-item role="listitem" routerLink="/admin">
+    <a mat-list-item role="listitem" routerLinkActive="active" routerLink="dashboard">
         <mat-icon color="primary" aria-hidden="true">dashboard</mat-icon>
         Dashboard
     </a>
-    <a mat-list-item role="listitem" routerLink="customers">
+    <a mat-list-item role="listitem" routerLinkActive="active" routerLink="customers">
         <mat-icon color="primary" aria-hidden="true" class="md-inactive">person</mat-icon>
         Customers
     </a>
-    <a mat-list-item role="listitem" routerLink="products">
+    <a mat-list-item role="listitem" routerLinkActive="active" routerLink="products">
         <mat-icon color="primary" aria-hidden="true">category</mat-icon>
         Products
     </a>
-    <a mat-list-item role="listitem" routerLink="orders">
+    <a mat-list-item role="listitem" routerLinkActive="active" routerLink="orders">
         <mat-icon color="primary" aria-hidden="true">receipt_long</mat-icon>
         Orders            
     </a>

@@ -1,0 +1,11 @@
+div.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+li > a {
+    transition: all 200ms;
+}

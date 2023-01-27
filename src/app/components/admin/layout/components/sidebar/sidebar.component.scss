@@ -8,6 +8,11 @@ mat-list {
 
         &:hover {
             background-color: darken($color: hsl(0, 0%, 85%), $amount: 20%);
-        }        
+        }
+        
+        &.active {
+            background-color: darken($color: hsl(0, 0%, 75%), $amount: 20%);
+
+        }
     }
 }
