@@ -1,6 +1,9 @@
 <div class="row mt-3">
 	<nav aria-label="product navigation" style="display: flex; justify-content: center">
-		<ul class="pagination" *ngIf="pageList">
+		<ul class="pagination" *ngIf="pageList.length > 0">
+			<li class="page-item">
+				<a class="page-link"> {{ currentPageNo }} / {{ totalPageCount }} </a>
+			</li>
 			<li class="page-item">
 				<a
 					class="page-link"
@@ -28,12 +31,14 @@
 
 <div class="container">
 	<div class="card" style="width: 18rem" *ngFor="let product of products">
-		<img src="../../../../../../assets/default-product.jpg" class="card-img-top" alt="product.name" />
+		<!-- <img *ngIf="!product.productImageFiles.length" src="../../../../../../assets/default-product.jpg" class="card-img-top" alt="product.name" /> -->
+		<img [src]="product.showcaseImagePath" alt="product.name">
 		<div class="card-body">
 			<h5 class="card-title">{{ product.name }}</h5>
-			<div class="card-body"></div>
-			<div class="card-footer">
+			<div class="card-body">
 				<p class="card-text">Stock {{ product.stock }}</p>
+			</div>
+			<div class="card-footer">
 				<a href="#" class="btn btn-success">{{ product.price | currency : "₺" }} Sepete Ekle</a>
 			</div>
 		</div>
