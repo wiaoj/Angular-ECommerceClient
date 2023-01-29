@@ -1,6 +1,9 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpStatusCode } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { NgxSpinnerService } from "ngx-spinner";
 import { catchError, Observable, of } from "rxjs";
+import { SpinnerType } from "src/app/components/base.component";
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from "../ui/customToastr/custom-toastr.service";
 import { UserAuthService } from "./models/user-auth.service";
 
@@ -8,19 +11,34 @@ import { UserAuthService } from "./models/user-auth.service";
 	providedIn: "root",
 })
 export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
-	constructor(private toastrService: CustomToastrService, private userAuthService: UserAuthService) {}
+	constructor(
+		private toastrService: CustomToastrService,
+		private userAuthService: UserAuthService,
+		private router: Router,
+		private spinner: NgxSpinnerService
+	) {}
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		return next.handle(req).pipe(
 			catchError((error) => {
 				switch (error.status) {
 					case HttpStatusCode.Unauthorized:
-						this.toastrService.message("Bu işlemi yapmaya yetkiniz bulunmamaktadır.", "Yetkisiz işlem", {
-							messageType: ToastrMessageType.Warning,
-							position: ToastrPosition.TopCenter,
-						});
+						const url = this.router.url;
 
-						this.userAuthService.refreshTokenLogin(localStorage.getItem("refreshToken")).then((data) => {});
+						if (url === "/products") {
+							this.toastrService.message("Sepete ürün eklemek için oturum açmalısınız", "Oturum açınız", {
+								messageType: ToastrMessageType.Warning,
+								position: ToastrPosition.TopRight
+							});
+						} else {
+							this.toastrService.message("Bu işlemi yapmaya yetkiniz bulunmamaktadır.", "Yetkisiz işlem", {
+								messageType: ToastrMessageType.Warning,
+								position: ToastrPosition.TopCenter,
+							});
+
+							this.userAuthService.refreshTokenLogin(localStorage.getItem("refreshToken")).then((data) => {});
+						}
+
 						break;
 
 					case HttpStatusCode.InternalServerError:
@@ -45,12 +63,13 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
 						break;
 
 					default:
-						this.toastrService.message("Beklenmeyen bir hata meydaha gelmiştir.", "Hata alındı", {
+						this.toastrService.message("Beklenmeyen bir hata meydana gelmiştir.", "Hata alındı", {
 							messageType: ToastrMessageType.Warning,
 							position: ToastrPosition.TopCenter,
 						});
 						break;
 				}
+				this.spinner.hide(SpinnerType.SquareJellyBox)
 				return of(error);
 			})
 		);

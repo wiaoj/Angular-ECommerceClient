@@ -1,26 +1,27 @@
 li.nav-item {
 	padding: 0.2rem;
-	a {
-		&.nav-link {
-			display: flex;
-			align-items: center;
+}
+a {
+	&.nav-link {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
 
-			&:not([class*="outline"]) {
-				border-bottom: 2px solid transparent;
+		&:not([class*="outline"]) {
+			border-bottom: 2px solid transparent;
 
-				&:hover {
-					border-bottom: 2px solid green;
-				}
+			&:hover {
+				border-bottom: 2px solid green;
 			}
 		}
+	}
 
-		&.log-out {
-			&:not([class*="outline"]) {
-				border-bottom: 2px solid transparent;
+	&.log-out {
+		&:not([class*="outline"]) {
+			border-bottom: 2px solid transparent;
 
-				&:hover {
-					border-bottom: 2px solid red;
-				}
+			&:hover {
+				border-bottom: 2px solid red;
 			}
 		}
 	}

@@ -11,5 +11,6 @@ import { DialogModule } from '@angular/cdk/dialog';
     AdminModule, 
     UiModule,
   ],
+  exports: [UiModule]
 })
 export class ComponentsModule {}

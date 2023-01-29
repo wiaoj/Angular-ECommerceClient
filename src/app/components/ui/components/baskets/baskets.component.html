@@ -1,1 +1,46 @@
-<p>baskets works!</p>
+<div
+	class="modal modal-xl fade"
+	id="exampleModal"
+	tabindex="-1"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">Alışveriş Sepeti</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-warning table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Ürün</th>
+							<th scope="col">Fiyat</th>
+							<th scope="col">Adet</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr [class]="basketItem.basketItemId" *ngFor="let basketItem of basketItems; let index = index">
+							<th scope="row">{{ index + 1 }}</th>
+							<td>{{basketItem.name}}</td>
+							<td>{{basketItem.price}}</td>
+							<td>
+								<input type="number" [value]="basketItem.quantity" style="width: 4rem" data-id="{{basketItem.basketItemId}}" (change)="changeQuantity($event)"/>
+							</td>
+							<td>
+								<button type="button" class="btn btn-secondary" (click)="removeBasketItem(basketItem.basketItemId)">x</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Sepeti kapat</button>
+				<button type="button" class="btn btn-success">Alışverişi tamamla</button>
+			</div>
+		</div>
+	</div>
+</div>

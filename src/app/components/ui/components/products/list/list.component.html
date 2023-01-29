@@ -31,15 +31,15 @@
 
 <div class="container">
 	<div class="card" style="width: 18rem" *ngFor="let product of products">
-		<!-- <img *ngIf="!product.productImageFiles.length" src="../../../../../../assets/default-product.jpg" class="card-img-top" alt="product.name" /> -->
-		<img [src]="product.showcaseImagePath" alt="product.name">
+		<img *ngIf="!product.showcaseImagePath" src="../../../../../../assets/default-product.jpg" class="card-img-top" alt="product.name" />
+		<img *ngIf="product.showcaseImagePath" [src]="product.showcaseImagePath" alt="product.name" />
 		<div class="card-body">
 			<h5 class="card-title">{{ product.name }}</h5>
 			<div class="card-body">
 				<p class="card-text">Stock {{ product.stock }}</p>
 			</div>
 			<div class="card-footer">
-				<a href="#" class="btn btn-success">{{ product.price | currency : "₺" }} Sepete Ekle</a>
+				<a (click)="addToBasket(product)" class="btn btn-success">{{ product.price | currency : "₺" }} Sepete Ekle</a>
 			</div>
 		</div>
 	</div>

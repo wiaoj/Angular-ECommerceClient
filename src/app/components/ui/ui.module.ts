@@ -29,6 +29,8 @@ import { ToastrModule } from 'ngx-toastr';
       easing:"ease-in",
       easeTime:250,
     }),
+  ],exports: [
+    ComponentsModule
   ]
 })
 export class UiModule { }

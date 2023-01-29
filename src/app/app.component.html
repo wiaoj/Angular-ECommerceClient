@@ -1,62 +1,58 @@
 <nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a routerLink="" class="navbar-brand">ECommerce</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a routerLink="" class="nav-link" routerLinkActive="active">
-            <!-- <mat-icon color="primary">home</mat-icon> -->
-            Home
-          </a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="products" class="nav-link" routerLinkActive="active">
-            <!-- <mat-icon color="primary">category</mat-icon> -->
-            Products
-          </a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="basket" class="nav-link" routerLinkActive="active">
-            <!-- <mat-icon color="accent">shopping_cart</mat-icon> -->
-            Baskets
-          </a>
-        </li>
-        <li class="nav-item" *ngIf="authService.isAuthenticated">
-          <a routerLink="admin" class="nav-link btn btn-outline-warning" routerLinkActive="active">
-            <!-- <mat-icon color="warn">admin_panel_settings</mat-icon> -->
-            Admin Panel
-          </a>
-        </li>
-        <li class="nav-item dropdown" *ngIf="!authService.isAuthenticated">
-          <a
-            class="nav-link dropdown-toggle"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Login
-          </a>
-          <ul class="dropdown-menu">
-            <li><a routerLink="login" class="dropdown-item" routerLinkActive="active">Login</a></li>
-            <li><a routerLink="register" class="dropdown-item" routerLinkActive="active">Register</a></li>
-          </ul>
-        </li>
-        <li class="nav-item" *ngIf="authService.isAuthenticated">
-          <a class="nav-link log-out" (click)="signOut()">Log-out</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
+	<div class="container-fluid">
+		<a routerLink="" class="navbar-brand">ECommerce</a>
+		<button
+			class="navbar-toggler"
+			type="button"
+			data-bs-toggle="collapse"
+			data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+		>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a routerLink="" class="nav-link" routerLinkActive="active">
+						<mat-icon color="primary">home</mat-icon>
+						Home
+					</a>
+				</li>
+				<li class="nav-item">
+					<a routerLink="products" class="nav-link" routerLinkActive="active">
+						<mat-icon color="primary">category</mat-icon>
+						Products
+					</a>
+				</li>
+				<li class="nav-item" *ngIf="authService.isAuthenticated">
+					<a routerLink="admin" class="nav-link btn btn-outline-warning" routerLinkActive="active">
+						<mat-icon color="warn">admin_panel_settings</mat-icon>
+						Admin Panel
+					</a>
+				</li>
+				<li class="nav-item dropdown" *ngIf="!authService.isAuthenticated">
+					<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Login
+					</a>
+					<ul class="dropdown-menu">
+						<li><a routerLink="login" class="dropdown-item" routerLinkActive="active">Login</a></li>
+						<li><a routerLink="register" class="dropdown-item" routerLinkActive="active">Register</a></li>
+					</ul>
+				</li>
+				<li class="nav-item" *ngIf="authService.isAuthenticated">
+					<a class="nav-link log-out" (click)="signOut()">Log-out</a>
+				</li>
+			</ul>
+
+			<div class="d-flex me-3" *ngIf="authService.isAuthenticated">
+				<a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					<mat-icon color="accent">shopping_cart</mat-icon>
+					Sepet
+				</a>
+			</div>
+			<!-- <form class="d-flex" role="search">
         <input
           class="form-control me-2"
           type="search"
@@ -64,32 +60,34 @@
           aria-label="Search"
         />
         <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
+      </form> -->
+		</div>
+	</div>
 </nav>
 
 <div class="container-md">
-  <router-outlet></router-outlet>
+	<router-outlet></router-outlet>
 </div>
 
 <ngx-spinner
-  name="line-spin-fade"
-  bdColor="rgba(0,0,0,0.6)"
-  type="line-spin-fade"
-  size="large"
-  color="#26d2c0"
-  [fullScreen]="true"
+	name="line-spin-fade"
+	bdColor="rgba(0,0,0,0.6)"
+	type="line-spin-fade"
+	size="large"
+	color="#26d2c0"
+	[fullScreen]="true"
 >
-  <p style="color: white; font-size: 2rem;">Yükleniyor...</p>
+	<p style="color: white; font-size: 2rem">Yükleniyor...</p>
 </ngx-spinner>
 <ngx-spinner
-  name="square-jelly-box"
-  bdColor="rgba(0,0,0,0.6)"
-  type="square-jelly-box"
-  size="large"
-  color="#26d2c0"
-  [fullScreen]="true"
+	name="square-jelly-box"
+	bdColor="rgba(0,0,0,0.6)"
+	type="square-jelly-box"
+	size="large"
+	color="#26d2c0"
+	[fullScreen]="true"
 >
-  <p style="color: white;font-size: 2rem;">Yükleniyor...</p>
+	<p style="color: white; font-size: 2rem">Yükleniyor...</p>
 </ngx-spinner>
+
+<app-baskets></app-baskets>
