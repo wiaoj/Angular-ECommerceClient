@@ -5,13 +5,9 @@ import { BaseComponent } from "src/app/components/base.component";
 	providedIn: "root",
 })
 export class DynamicLoadComponentService {
-	constructor(
-    private componentFactoryResolver: ComponentFactoryResolver // belirli bir component için componentfactory'i resolve eder
-    ) {}
+	constructor() {}
 
-	async loadComponent(
-    component: ComponentType, 
-    viewContainerRef: ViewContainerRef) {
+	async loadComponent(component: ComponentType, viewContainerRef: ViewContainerRef) {
 		let _component: any = null;
 
 		switch (component) {
@@ -21,7 +17,7 @@ export class DynamicLoadComponentService {
 		}
 
 		viewContainerRef.clear(); //önceki viewlar clear ediliyor
-		return viewContainerRef.createComponent(this.componentFactoryResolver.resolveComponentFactory(_component));
+		return viewContainerRef.createComponent(_component);
 		// return viewContainerRef.createComponent(_component);
 	}
 }
