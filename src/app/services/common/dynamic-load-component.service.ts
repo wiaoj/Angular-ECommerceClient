@@ -18,7 +18,6 @@ export class DynamicLoadComponentService {
 
 		viewContainerRef.clear(); //önceki viewlar clear ediliyor
 		return viewContainerRef.createComponent(_component);
-		// return viewContainerRef.createComponent(_component);
 	}
 }
 

@@ -29,6 +29,11 @@ import { DynamicComponentDirective } from "./directives/common/dynamic-component
 	],
 	providers: [
 		{
+			provide: "baseSignalRUrl",
+			useValue: "https://localhost:7158/",
+			multi: true,
+		},
+		{
 			provide: "baseUrl",
 			useValue: "https://localhost:7158/api",
 			multi: true,
