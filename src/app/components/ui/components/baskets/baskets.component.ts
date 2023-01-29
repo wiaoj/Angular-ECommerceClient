@@ -28,13 +28,15 @@ export class BasketsComponent extends BaseComponent implements OnInit {
 		this.hideSpinner(SpinnerType.SquareJellyBox);
 	}
 
-	async changeQuantity(object: any) {
+	async changeQuantity(object: any) : Promise<void> {
 		this.showSpinner(SpinnerType.SquareJellyBox);
 
 		const basketItemId: string = object.target.attributes["id"].value;
 		const quantity: number = object.target.value;
 
-		quantity < 1 && this.removeBasketItem(basketItemId);
+		if (quantity < 1 ){
+			return await this.removeBasketItem(basketItemId)
+		}
 
 		const basketItem: Update_Basket_Item = new Update_Basket_Item();
 		basketItem.basketItemId = basketItemId;
@@ -43,7 +45,7 @@ export class BasketsComponent extends BaseComponent implements OnInit {
 		this.hideSpinner(SpinnerType.SquareJellyBox);
 	}
 
-	async removeBasketItem(basketItemId: string) {
+	async removeBasketItem(basketItemId: string) : Promise<void> {
 		this.showSpinner(SpinnerType.SquareJellyBox);
 
 		let basketItem: Delete_Basket_Item = new Delete_Basket_Item();

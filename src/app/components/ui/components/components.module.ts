@@ -6,6 +6,7 @@ import { HomeModule } from './home/home.module';
 import { RegisterModule } from './register/register.module';
 import { LoginComponent } from './login/login.component';
 import { LoginModule } from './login/login.module';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [],
@@ -16,6 +17,7 @@ import { LoginModule } from './login/login.module';
     BasketsModule,
     RegisterModule,
     LoginModule, 
+    MatIconModule
   ],
   exports: [
     BasketsModule

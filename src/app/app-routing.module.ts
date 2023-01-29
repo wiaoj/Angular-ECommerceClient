@@ -57,7 +57,8 @@ const routes: Routes = [
 	},
 	{
 		path: "products",
-		loadChildren: () => import(`${UI_COMPONENTS_PATH}products/products.module`).then((module) => module.ProductsModule),
+		redirectTo: "products/1"
+		// loadChildren: () => import(`${UI_COMPONENTS_PATH}products/products.module`).then((module) => module.ProductsModule),
 	},
 	{
 		path: "products/:pageNo",

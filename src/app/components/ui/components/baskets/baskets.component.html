@@ -1,11 +1,4 @@
-<div
-	class="modal modal-xl fade"
-	id="exampleModal"
-	tabindex="-1"
-	aria-labelledby="exampleModalLabel"
-	aria-hidden="true"
->
-	<div class="modal-dialog">
+
 		<div class="modal-content">
 			<div class="modal-header">
 				<h1 class="modal-title fs-5" id="exampleModalLabel">Alışveriş Sepeti</h1>
@@ -25,13 +18,28 @@
 					<tbody>
 						<tr [class]="basketItem.basketItemId" *ngFor="let basketItem of basketItems; let index = index">
 							<th scope="row">{{ index + 1 }}</th>
-							<td>{{basketItem.name}}</td>
-							<td>{{basketItem.price}}</td>
+							<td>{{ basketItem.name }}</td>
+							<td>{{ basketItem.price }}</td>
 							<td>
-								<input type="number" [value]="basketItem.quantity" style="width: 4rem" data-id="{{basketItem.basketItemId}}" (change)="changeQuantity($event)"/>
+								<input
+									type="number"
+									[value]="basketItem.quantity"
+									style="width: 4rem"
+									data-id="{{ basketItem.basketItemId }}"
+									(change)="changeQuantity($event)"
+								/>
 							</td>
 							<td>
-								<button type="button" class="btn btn-secondary" (click)="removeBasketItem(basketItem.basketItemId)">x</button>
+								<!-- <button
+									type="button"
+									class="btn btn-secondary"
+									(click)="removeBasketItem(basketItem.basketItemId)"
+								>
+									x
+								</button> -->
+								<mat-icon class="button" color="warn" (click)="removeBasketItem(basketItem.basketItemId)"
+									>delete</mat-icon
+								>
 							</td>
 						</tr>
 					</tbody>
@@ -42,5 +50,3 @@
 				<button type="button" class="btn btn-success">Alışverişi tamamla</button>
 			</div>
 		</div>
-	</div>
-</div>

@@ -1,0 +1,7 @@
+.button {
+    cursor: pointer;
+    transition: all 300ms;
+    &:hover {
+        scale: 1.1;
+    }
+}
