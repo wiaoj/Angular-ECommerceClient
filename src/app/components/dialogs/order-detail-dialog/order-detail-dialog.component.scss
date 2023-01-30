@@ -1,0 +1,41 @@
+.order-detail-table {
+	width: 100%;
+}
+
+// .mat-mdc-row .mat-mdc-cell {
+//   border-bottom: 1px solid transparent;
+//   border-top: 1px solid transparent;
+//   cursor: pointer;
+// }
+
+// :is(.mat-mdc-row, .mat-mdc-cell):hover {
+//   border-color: currentColor;
+// }
+
+tr {
+	cursor: pointer;
+	transition: all 400ms;
+	&:not([mat-header-row]):hover {
+		background-color: darken($color: white, $amount: 20);
+	}
+}
+
+.toolbar{
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: .2rem;
+}
+
+.order-properties {
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	font-weight: bold;
+	& .total-price{ 
+		align-self: flex-end;
+		font-size: 1.5rem;
+		color: hsl(120, 56%, 38%);
+	}
+}

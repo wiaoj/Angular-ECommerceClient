@@ -5,7 +5,7 @@ import {
 	SocialLoginModule,
 } from "@abacritt/angularx-social-login";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { NgModule } from "@angular/core";
+import { LOCALE_ID, NgModule } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -18,6 +18,7 @@ import { LoginComponent } from "./components/ui/components/login/login.component
 import { HttpErrorHandlerInterceptorService } from "./services/common/http-error-handler-interceptor.service";
 import { BasketsModule } from "./components/ui/components/baskets/baskets.module";
 import { DynamicComponentDirective } from "./directives/common/dynamic-component.directive";
+import { OrderCodePipe } from "./pipes/orders/order-code.pipe";
 
 @NgModule({
 	declarations: [

@@ -3,6 +3,10 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { NgxSpinnerService } from "ngx-spinner";
 import { BaseComponent, SpinnerType } from "src/app/components/base.component";
+import {
+	OrderDetailDialogComponent,
+	OrderDetailDialogState,
+} from "src/app/components/dialogs/order-detail-dialog/order-detail-dialog.component";
 import { SelectProductImageDialogComponent } from "src/app/components/dialogs/select-product-image-dialog/select-product-image-dialog.component";
 import List_Order from "src/app/contracts/order/List_Order";
 import { List_Product } from "src/app/contracts/product/List_Product";
@@ -26,7 +30,7 @@ export class ListOrdersComponent extends BaseComponent implements OnInit {
 		super(spinner);
 	}
 
-	displayedColumns: string[] = ["orderCode", "userName", "totalPrice", "createdDate", "delete"];
+	displayedColumns: string[] = ["orderCode", "userName", "totalPrice", "createdDate", "viewDetail", "delete"];
 
 	dataSource: MatTableDataSource<List_Order>;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -48,12 +52,22 @@ export class ListOrdersComponent extends BaseComponent implements OnInit {
 					position: AlertifyPosition.TopRight,
 				})
 		);
-		
+
 		this.dataSource = new MatTableDataSource<List_Order>(allOrders.orders);
 		this.paginator.length = allOrders.totalOrderCount;
 	}
 
 	async pageChanged() {
 		await this.getOrders();
+	}
+
+	showDetail(id: string) {
+		this.dialogService.openDialog({
+			componentType: OrderDetailDialogComponent,
+			data: id,
+			options: {
+				width: "48rem"
+			}
+		});
 	}
 }
