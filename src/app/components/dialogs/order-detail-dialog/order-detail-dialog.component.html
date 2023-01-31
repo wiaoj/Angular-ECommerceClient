@@ -52,5 +52,6 @@
 
 <mat-dialog-actions align="end">
 	<button mat-button mat-dialog-close>Kapat</button>
-	<button mat-button [mat-dialog-close]="data" cdkFocusInitial>Siparişi Tamamla</button>
+	<button *ngIf="!singleOrder.completed" mat-button [mat-dialog-close]="data" cdkFocusInitial (click)="completeOrder()">Siparişi Tamamla</button>
+	<button *ngIf="singleOrder.completed" mat-button mat-dialog-close style="background-color: violet;">Sipariş zaten tamamlanmış</button>
 </mat-dialog-actions>

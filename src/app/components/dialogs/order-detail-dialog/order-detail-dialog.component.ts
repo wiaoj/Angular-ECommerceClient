@@ -1,8 +1,13 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { NgxSpinnerService } from "ngx-spinner";
 import Single_Order from "src/app/contracts/order/Single_Order";
+import { DialogService } from "src/app/services/common/dialog.service";
 import { OrderService } from "src/app/services/common/models/order.service";
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from "src/app/services/ui/customToastr/custom-toastr.service";
+import { SpinnerType } from "../../base.component";
 import { BaseDialog } from "../base/base-dialog";
+import { OrderCompleteDialogComponent, OrderCompleteState } from "../order-complete-dialog/order-complete-dialog.component";
 
 @Component({
 	selector: "app-order-detail-dialog",
@@ -13,7 +18,10 @@ export class OrderDetailDialogComponent extends BaseDialog<OrderDetailDialogComp
 	constructor(
 		dialogRef: MatDialogRef<OrderDetailDialogComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: OrderDetailDialogState | string,
-		private orderService: OrderService
+		private orderService: OrderService,
+		private dialogService: DialogService,
+		private spinner: NgxSpinnerService,
+		private toastr: CustomToastrService
 	) {
 		super(dialogRef);
 	}
@@ -31,6 +39,22 @@ export class OrderDetailDialogComponent extends BaseDialog<OrderDetailDialogComp
 		this.totalPrice = this.singleOrder.basketItems
 			.map((basketItem, index) => basketItem.price * basketItem.quantity)
 			.reduce((price, current) => price + current);
+	}
+
+	completeOrder() {
+		this.dialogService.openDialog({
+			componentType: OrderCompleteDialogComponent,
+			data: OrderCompleteState.Yes,
+			afterClosed: async () => {
+				this.spinner.show(SpinnerType.SquareJellyBox);
+				await this.orderService.completeOrder(this.singleOrder.id);
+				this.spinner.hide(SpinnerType.SquareJellyBox);
+				this.toastr.message("Sipariş başarıyla tamamlanmıştır, müşteriye bilgi verilmiştir", "Sipariş tamamlandı", {
+					messageType: ToastrMessageType.Success,
+					position: ToastrPosition.TopRight,
+				});
+			},
+		});
 	}
 }
 

@@ -19,7 +19,7 @@ export class ShoppingComplateDialogComponent extends BaseDialog<ShoppingComplate
 	}
 
 	show:boolean = false;
-	complate() {
+	complete() {
 		this.show = true;
 	}
 

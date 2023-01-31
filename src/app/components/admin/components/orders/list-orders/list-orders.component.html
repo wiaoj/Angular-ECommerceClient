@@ -30,8 +30,21 @@
 			<td mat-cell *matCellDef="let element">{{ element.createdDate }}</td>
 		</ng-container>
 
+		<ng-container matColumnDef="isCompleted">
+			<th mat-header-cell *matHeaderCellDef>Status</th>
+			<td mat-cell *matCellDef="let element">
+				<mat-icon matTooltip="Order completed" matTooltipPosition="above" *ngIf="element.completed" style="color: green"
+					>insert_emoticon</mat-icon
+				>
+
+				<mat-icon matTooltip="Pending" matTooltipPosition="above" *ngIf="!element.completed" style="color: black"
+					>face</mat-icon
+				>
+			</td>
+		</ng-container>
+
 		<ng-container matColumnDef="viewDetail">
-			<th mat-header-cell *matHeaderCellDef>Detaya bak</th>
+			<th mat-header-cell *matHeaderCellDef>Details</th>
 			<td mat-cell *matCellDef="let element">
 				<mat-icon class="button" color="primary" (click)="showDetail(element.id)">remove_red_eye</mat-icon>
 			</td>

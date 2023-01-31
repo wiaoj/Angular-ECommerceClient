@@ -5,4 +5,5 @@ export default class Single_Order {
 	description: string;
 	basketItems: any[];
 	createdDate: Date;
+	completed: boolean;
 }

@@ -30,7 +30,7 @@ export class ListOrdersComponent extends BaseComponent implements OnInit {
 		super(spinner);
 	}
 
-	displayedColumns: string[] = ["orderCode", "userName", "totalPrice", "createdDate", "viewDetail", "delete"];
+	displayedColumns: string[] = ["orderCode", "userName", "totalPrice", "createdDate", "isCompleted","viewDetail", "delete"];
 
 	dataSource: MatTableDataSource<List_Order>;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
