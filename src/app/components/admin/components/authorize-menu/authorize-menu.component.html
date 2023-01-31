@@ -1,0 +1,30 @@
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="p-3">
+	<!-- This is the tree node template for leaf nodes -->
+	<mat-tree-node *matTreeNodeDef="let node" (click)="assignRole(node.code, node.name)" matTreeNodePadding not class="ps-0 m-0 align-items-baseline">
+		<!-- use a disabled button to provide padding for tree leaf -->
+		<button mat-icon-button disabled></button>
+		<div class="d-flex align-items-baseline justify-content-between flex-fill z-index">
+			<div class="me-auto d-flex flex-fill align-items-baseline">
+				<p class="m-0">{{ node.name }}</p>
+                <p class="m-auto m-0">{{ node.code }}</p>
+			</div>
+			<div class="me-4">
+				<button mat-stroked-button color="accent" class="px-5 py-1">Rol ata</button>
+			</div>
+		</div>
+	</mat-tree-node>
+	<!-- This is the tree node template for expandable nodes -->
+	<mat-tree-node
+		*matTreeNodeDef="let node; when: hasChild"
+		matTreeNodePadding
+		mat-icon-button
+		matTreeNodeToggle
+		[attr.aria-label]="'Toggle ' + node.name"
+	>
+		<mat-icon class="mat-icon-rtl-mirror">
+			{{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
+		</mat-icon>
+
+		{{ node.name }}
+	</mat-tree-node>
+</mat-tree>

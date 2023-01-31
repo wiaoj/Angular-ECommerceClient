@@ -1,0 +1,9 @@
+<h1 mat-dialog-title mat-raised-button color="primary"
+matBadge="8" matBadgePosition="after" matBadgeColor="accent">{{ data.name }} Rol Atama</h1>
+<div mat-dialog-content>
+	<p>İlgili sayfaya rol atanmasını istiyor musunuz?</p>
+</div>
+<div mat-dialog-actions class="justify-content-end">
+	<button mat-button cdkFocusInitial (click)="close()">Hayır, iptal et</button>
+	<button mat-button [mat-dialog-close]="data">Evet, tamamla</button>
+</div>

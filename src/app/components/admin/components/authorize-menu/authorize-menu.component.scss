@@ -1,0 +1,14 @@
+mat-tree-node {
+	transition: all 200ms;
+	cursor: pointer;
+
+	&:not([not]):hover {
+		opacity: 0.8;
+		background-color: darken($color: white, $amount: 20);
+	}
+
+    &[not]:hover {
+		background-color: darken($color: white, $amount: 4);
+
+    }
+}

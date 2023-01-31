@@ -43,6 +43,12 @@ const routes: Routes = [
 					import(`${ADMIN_COMPONENTS_PATH}dashboard/dashboard.module`).then((module) => module.DashboardModule),
 				canActivate: [AuthGuard],
 			},
+			{
+				path: "authorize-menu",
+				loadChildren: () =>
+					import(`${ADMIN_COMPONENTS_PATH}authorize-menu/authorize-menu.module`).then((module) => module.AuthorizeMenuModule),
+				canActivate: [AuthGuard],
+			},
 		],
 		canActivate: [AuthGuard],
 	},
