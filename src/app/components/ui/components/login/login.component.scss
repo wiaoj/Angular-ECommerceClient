@@ -1,0 +1,8 @@
+.forgot-password {
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    transition: all 200ms;
+    &:hover {
+        border-color: hsl(0, 0%, 80%);
+    }
+}

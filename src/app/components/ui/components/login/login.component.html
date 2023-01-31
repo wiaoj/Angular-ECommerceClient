@@ -28,13 +28,19 @@
           placeholder="Password"
         />
       </div>
-      <button
+      <div class="d-flex justify-content-around align-items-center">
+        <button
         type="submit"
         class="btn btn-primary p-2"
         (click)="login(txtUsernameOrEmail.value, txtPassword.value)"
       >
         Login
       </button>
+
+      <a routerLink="/password-reset"
+         class="forgot-password text-warning"
+      >I forgot my password</a>
+      </div>
 
       <div
         style="

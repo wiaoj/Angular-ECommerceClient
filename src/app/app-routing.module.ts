@@ -69,6 +69,14 @@ const routes: Routes = [
 		loadChildren: () => import(`${UI_COMPONENTS_PATH}login/login.module`).then((module) => module.LoginModule),
 	},
 	{
+		path: "password-reset",
+		loadChildren: () => import(`${UI_COMPONENTS_PATH}password-reset/password-reset.module`).then((module) => module.PasswordResetModule),
+	},
+	{
+		path: "password-update/:userId/:resetToken",
+		loadChildren: () => import(`${UI_COMPONENTS_PATH}password-update/password-update.module`).then((module) => module.PasswordUpdateModule),
+	},
+	{
 		path: "register",
 		loadChildren: () => import(`${UI_COMPONENTS_PATH}register/register.module`).then((module) => module.RegisterModule),
 	},
