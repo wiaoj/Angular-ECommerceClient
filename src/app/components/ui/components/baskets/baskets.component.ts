@@ -91,8 +91,8 @@ export class BasketsComponent extends BaseComponent implements OnInit {
 				this.showSpinner(SpinnerType.SquareJellyBox);
 
 				const createOrder: Create_Order = new Create_Order();
-				createOrder.address = "adress";
-				createOrder.description = "order description";
+				createOrder.address = "adres alınacak";
+				createOrder.description = "açıklama alınacak";
 				await this.orderService.create(createOrder);
 
 				this.toastrService.message("Sipariş alınmıştır!", "Siperiş oluşturuldu", {
