@@ -1,0 +1,13 @@
+<mat-drawer-container class="role-container" autosize>
+    <mat-drawer #drawer class="role-sidenav" mode="side">
+      <app-create-role (createdRole)="createdRole($event)"></app-create-role>
+    </mat-drawer>
+  
+    <div class="role-sidenav-content">
+      <button type="button" mat-stroked-button (click)="drawer.toggle()">
+        Add Role
+      </button>
+      <app-list-roles></app-list-roles>
+    </div>
+  </mat-drawer-container>
+  

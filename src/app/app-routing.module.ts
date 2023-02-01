@@ -49,6 +49,12 @@ const routes: Routes = [
 					import(`${ADMIN_COMPONENTS_PATH}authorize-menu/authorize-menu.module`).then((module) => module.AuthorizeMenuModule),
 				canActivate: [AuthGuard],
 			},
+			{
+				path: "roles",
+				loadChildren: () =>
+					import(`${ADMIN_COMPONENTS_PATH}role/role.module`).then((module) => module.RoleModule),
+				canActivate: [AuthGuard],
+			},
 		],
 		canActivate: [AuthGuard],
 	},

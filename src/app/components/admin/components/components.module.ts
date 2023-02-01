@@ -6,9 +6,19 @@ import { CustomersModule } from "./customers/customers.module";
 import { DashboardModule } from "./dashboard/dashboard.module";
 import { AuthorizeMenuModule } from "./authorize-menu/authorize-menu.module";
 import { MatIconModule } from "@angular/material/icon";
+import { RoleModule } from "./role/role.module";
 
 @NgModule({
 	declarations: [],
-	imports: [CommonModule, ProductsModule, CustomersModule, OrdersModule, DashboardModule, AuthorizeMenuModule, MatIconModule],
+	imports: [
+		CommonModule,
+		ProductsModule,
+		CustomersModule,
+		OrdersModule,
+		DashboardModule,
+		AuthorizeMenuModule,
+		MatIconModule,
+		RoleModule,
+	],
 })
 export class ComponentsModule {}

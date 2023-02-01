@@ -1,0 +1,13 @@
+table.list-role {
+    width: 100%;
+  }
+  
+  tr {
+    &:not([mat-header-row]):hover {
+      background: whitesmoke;
+    }
+  
+    .button {
+      cursor: pointer;
+    }
+  }
