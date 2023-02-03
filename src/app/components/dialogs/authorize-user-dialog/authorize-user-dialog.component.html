@@ -1,4 +1,4 @@
-<h1 mat-dialog-title mat-raised-button color="primary">{{ data.name }} Rol Atama</h1>
+<h1 mat-dialog-title mat-raised-button color="primary">{{ data.username }} adlı kullanıcıya Rol Ata</h1>
 <div mat-dialog-content>
 	<p
 		class="my-3"
@@ -6,7 +6,7 @@
 		matBadgePosition="after"
 		matBadgeColor="accent"
 	>
-		İlgili sayfaya rol atanmasını istiyor musunuz?
+		İlgili kullanıcıya rol atanmasını istiyor musunuz?
 	</p>
 
 	<mat-selection-list #rolesComponent>
@@ -19,5 +19,5 @@
 
 <div mat-dialog-actions class="justify-content-end">
 	<button mat-button cdkFocusInitial (click)="close()">Hayır, iptal et</button>
-	<button mat-button [mat-dialog-close]="data" (click)="assignRoles(rolesComponent)">Rolleri ata</button>
+	<button mat-button [mat-dialog-close]="data" (click)="assignRoles(rolesComponent)">Evet, kullanıcıyı yetkilendir</button>
 </div>

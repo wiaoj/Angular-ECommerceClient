@@ -7,6 +7,7 @@ import { DashboardModule } from "./dashboard/dashboard.module";
 import { AuthorizeMenuModule } from "./authorize-menu/authorize-menu.module";
 import { MatIconModule } from "@angular/material/icon";
 import { RoleModule } from "./role/role.module";
+import { UserModule } from "./user/user.module";
 
 @NgModule({
 	declarations: [],
@@ -19,6 +20,7 @@ import { RoleModule } from "./role/role.module";
 		AuthorizeMenuModule,
 		MatIconModule,
 		RoleModule,
+		UserModule
 	],
 })
 export class ComponentsModule {}

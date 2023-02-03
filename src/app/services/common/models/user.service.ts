@@ -1,11 +1,8 @@
-import { SocialUser } from "@abacritt/angularx-social-login";
-import { Token } from "@angular/compiler";
 import { Injectable } from "@angular/core";
 import { firstValueFrom, Observable } from "rxjs";
-import { TokenResponse } from "src/app/contracts/token/TokenResponse";
 import { Create_User } from "src/app/contracts/user/Create_User";
+import List_User from "src/app/contracts/user/List_User";
 import { User } from "src/app/entities/user";
-import { CustomToastrService, ToastrMessageType, ToastrPosition } from "../../ui/customToastr/custom-toastr.service";
 import { HttpClientService } from "../httpClient/http-client.service";
 
 @Injectable({
@@ -22,6 +19,23 @@ export class UserService {
 			user
 		);
 		return (await firstValueFrom(observable)) as Create_User;
+	}
+
+	async getAllUsers(
+		page: number = 0,
+		size: number = 5,
+		successCallBack?: () => void,
+		errorCallBack?: (message: string) => void
+	): Promise<{ totalUserCount: number; users: List_User[] }> {
+		const observable: Observable<{ totalUserCount: number; users: List_User[] }> = this.httpClientService.get({
+			controller: "users",
+			queryString: `page=${page}&size=${size}`,
+		});
+
+		const promiseData = firstValueFrom(observable);
+		promiseData.then(() => successCallBack).catch((error) => errorCallBack(error));
+
+		return await promiseData;
 	}
 
 	async updatePassword(
@@ -46,9 +60,44 @@ export class UserService {
 		);
 
 		const promiseData = firstValueFrom(observable);
-		
+
 		promiseData.then(() => successCallback).catch((error) => errorCallback(error));
 
 		await promiseData;
+	}
+
+	async assignRoleToUser(id: string, roles: string[], successCallBack?: () => void, errorCallBack?: (error) => void) {
+		const observable: Observable<any> = this.httpClientService.post(
+			{
+				controller: "users",
+				action: "assign-role-to-user",
+			},
+			{
+				id: id,
+				roles: roles,
+			}
+		);
+
+		const promiseData = observable.subscribe({
+			next: successCallBack,
+			error: errorCallBack,
+		});
+
+		await promiseData;
+	}
+
+	async getRolesToUser(id: string, successCallBack?: () => void, errorCallBack?: (error) => void): Promise<string[]> {
+		const observable: Observable<{ roles: string[] }> = this.httpClientService.get(
+			{
+				controller: "users",
+				action: "get-roles-to-user",
+			},
+			id
+		);
+
+		const promiseData = firstValueFrom(observable);
+		promiseData.then(successCallBack).catch(errorCallBack);
+
+		return (await promiseData).roles;
 	}
 }

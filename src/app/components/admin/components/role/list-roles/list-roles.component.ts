@@ -44,11 +44,7 @@ export class ListRolesComponent extends BaseComponent implements OnInit {
 					messageType: AlertifyMessageType.Error,
 					position: AlertifyPosition.TopRight,
 				})
-		);
-		console.log(this.paginator);
-		console.log(this.paginator.pageIndex, this.paginator.pageSize);
-		
-		
+		);	
 
 		const _rolesData: List_Role[] = [];
 

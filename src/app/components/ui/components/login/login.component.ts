@@ -28,15 +28,14 @@ export class LoginComponent extends BaseComponent implements OnInit {
 				case "GOOGLE":
 					await userAuthService.googleLogin(user, () => {
 						this.authService.identityCheck();
-						this.router.navigate([""]);
-
+						this.navigateUser()
 						this.hideSpinner(SpinnerType.SquareJellyBox);
 					});
 					break;
 				case "FACEBOOK":
 					await userAuthService.facebookLogin(user, () => {
 						this.authService.identityCheck();
-						this.router.navigate([""]);
+						this.navigateUser()
 
 						this.hideSpinner(SpinnerType.SquareJellyBox);
 					});
@@ -47,21 +46,26 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
 	ngOnInit(): void {}
 
+	navigateUser(){
+		// Route üzerindeki returnUrl kısmını okuyoruz
+		this.activatedRoute.queryParams.subscribe((queryParams) => {
+			const returnUrl: string = queryParams["returnUrl"]; // return Url i okuyoruz
+			if (returnUrl)
+				// Eğer url var ise
+				this.router.navigate([returnUrl]); // Url'e yönlendiriyoruz
+			// Url yoksa hiçbir şey yapmıyoruz xd
+			this.router.navigate([""]);
+		});
+
+
+	}
+
 	async login(usernameOrEmail: string, password: string) {
 		this.showSpinner(SpinnerType.SquareJellyBox);
 		await this.userAuthService.login(usernameOrEmail, password, () => {
 			this.authService.identityCheck(); // içindeki kontrolleri yapıp global değişkenimizin durumunu değiştiriyoruz
-
-			// Route üzerindeki returnUrl kısmını okuyoruz
-			this.activatedRoute.queryParams.subscribe((queryParams) => {
-				const returnUrl: string = queryParams["returnUrl"]; // return Url i okuyoruz
-				if (returnUrl)
-					// Eğer url var ise
-					this.router.navigate([returnUrl]); // Url'e yönlendiriyoruz
-				// Url yoksa hiçbir şey yapmıyoruz xd
-				this.router.navigate([""]);
-			});
-
+			this.navigateUser()
+			
 			this.hideSpinner(SpinnerType.SquareJellyBox);
 		});
 	}

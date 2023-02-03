@@ -17,6 +17,7 @@ interface ITreeMenu {
 	name?: string;
 	actions?: ITreeMenu[];
 	code?: string;
+	menuName?: string;
 }
 
 @Component({
@@ -33,10 +34,10 @@ export class AuthorizeMenuComponent extends BaseComponent implements OnInit {
 		super(spinner);
 	}
 
-	assignRole(code: string, name: string) {
+	assignRole(code: string, name: string, menuName: string) {
 		this.dialogService.openDialog({
 			componentType: AuthorizeMenuDialogComponent,
-			data: { code, name },
+			data: { code: code, name: name, menuName: menuName },
 			options: {
 				width: "48rem",
 			},
@@ -54,6 +55,7 @@ export class AuthorizeMenuComponent extends BaseComponent implements OnInit {
 					const _treeMenu: ITreeMenu = {
 						name: action.definition,
 						code: action.code,
+						menuName: menu.name,
 					};
 					return _treeMenu;
 				}),
@@ -68,12 +70,13 @@ export class AuthorizeMenuComponent extends BaseComponent implements OnInit {
 	);
 
 	treeFlattener = new MatTreeFlattener(
-		(menu: ITreeMenu, level: number) => {
+		(treeMenu: ITreeMenu, level: number) => {
 			return {
-				expandable: menu.actions?.length > 0,
+				expandable: treeMenu.actions?.length > 0,
 				level: level,
-				name: menu.name,
-				code: menu.code,
+				name: treeMenu.name,
+				code: treeMenu.code,
+				menuName: treeMenu.menuName,
 			};
 		},
 		(menu) => menu.level,

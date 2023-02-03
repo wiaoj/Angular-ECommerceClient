@@ -1,14 +1,14 @@
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="p-3">
 	<!-- This is the tree node template for leaf nodes -->
-	<mat-tree-node *matTreeNodeDef="let node" (click)="assignRole(node.code, node.name)" matTreeNodePadding not class="ps-0 m-0 align-items-baseline">
+	<mat-tree-node *matTreeNodeDef="let node" (click)="assignRole(node.code, node.name, node.menuName)" matTreeNodePadding not class="ps-0 m-0">
 		<!-- use a disabled button to provide padding for tree leaf -->
 		<button mat-icon-button disabled></button>
-		<div class="d-flex align-items-baseline justify-content-between flex-fill z-index">
-			<div class="me-auto d-flex flex-fill align-items-baseline">
+		<div class="d-flex align-items-center justify-content-between flex-fill z-index">
+			<div class="me-auto d-flex flex-fill">
 				<p class="m-0">{{ node.name }}</p>
                 <p class="m-auto m-0">{{ node.code }}</p>
 			</div>
-			<div class="me-4">
+			<div class="mx-2">
 				<button mat-stroked-button color="accent" class="px-5 py-1">Rol ata</button>
 			</div>
 		</div>
