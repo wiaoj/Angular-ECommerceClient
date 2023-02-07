@@ -23,7 +23,10 @@ export class HttpClientService {
 				requestParameter.queryString ? `?${requestParameter.queryString}` : ""
 			}`;
 
-		return this.httpClient.get<Type>(url, { headers: requestParameter.headers });
+		return this.httpClient.get<Type>(url, {
+			headers: requestParameter.headers,
+			responseType: requestParameter.responseType as "json",
+		});
 	}
 
 	post<Type>(requestParameter: Partial<RequestParameters>, body: Partial<Type>): Observable<Type> {
@@ -31,14 +34,20 @@ export class HttpClientService {
 		if (requestParameter.fullEndPoint) url = requestParameter.fullEndPoint;
 		else url = `${this.url(requestParameter)}${requestParameter.queryString ? `?${requestParameter.queryString}` : ""}`;
 
-		return this.httpClient.post<Type>(url, body, { headers: requestParameter.headers });
+		return this.httpClient.post<Type>(url, body, {
+			headers: requestParameter.headers,
+			responseType: requestParameter.responseType as "json",
+		});
 	}
 
 	put<Type>(requestParameter: Partial<RequestParameters>, body: Partial<Type>): Observable<Type> {
 		let url: string = "";
 		if (requestParameter.fullEndPoint) url = requestParameter.fullEndPoint;
 		else url = `${this.url(requestParameter)}${requestParameter.queryString ? `?${requestParameter.queryString}` : ""}`;
-		return this.httpClient.put<Type>(url, body, { headers: requestParameter.headers });
+		return this.httpClient.put<Type>(url, body, {
+			headers: requestParameter.headers,
+			responseType: requestParameter.responseType as "json",
+		});
 	}
 
 	delete<Type>(requestParameter: Partial<RequestParameters>, id: string): Observable<Type> {
@@ -49,7 +58,10 @@ export class HttpClientService {
 				requestParameter.queryString ? `?${requestParameter.queryString}` : ""
 			}`;
 
-		return this.httpClient.delete<Type>(url, { headers: requestParameter.headers });
+		return this.httpClient.delete<Type>(url, {
+			headers: requestParameter.headers,
+			responseType: requestParameter.responseType as "json",
+		});
 	}
 }
 
@@ -61,4 +73,6 @@ export class RequestParameters {
 	headers?: HttpHeaders;
 	baseUrl?: string;
 	fullEndPoint?: string; //farklı servislere istek gönderecek kapasiteyi ekliyor
+
+	responseType?: string = "json";
 }

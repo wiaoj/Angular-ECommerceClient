@@ -16,7 +16,8 @@ import { OrderCompleteDialogComponent } from "./order-complete-dialog/order-comp
 import { AuthorizeMenuDialogComponent } from "./authorize-menu-dialog/authorize-menu-dialog.component";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatListModule } from "@angular/material/list";
-import { AuthorizeUserDialogComponent } from './authorize-user-dialog/authorize-user-dialog.component';
+import { AuthorizeUserDialogComponent } from "./authorize-user-dialog/authorize-user-dialog.component";
+import { QrcodeDialogComponent } from "./qrcode-dialog/qrcode-dialog.component";
 @NgModule({
 	declarations: [
 		DeleteDialogComponent,
@@ -26,7 +27,8 @@ import { AuthorizeUserDialogComponent } from './authorize-user-dialog/authorize-
 		OrderDetailDialogComponent,
 		OrderCompleteDialogComponent,
 		AuthorizeMenuDialogComponent,
-  AuthorizeUserDialogComponent,
+		AuthorizeUserDialogComponent,
+		QrcodeDialogComponent
 	],
 	imports: [
 		CommonModule,
