@@ -1,12 +1,11 @@
+<button mat-stroked-button color="primary" (click)="showProductQrCodeReading()">Product QrCode Reading</button>
 <mat-drawer-container class="product-container" autosize>
-  <mat-drawer #drawer class="product-sidenav" mode="side">
-    <app-create-product (createdProduct)="createdProduct($event)"></app-create-product>
-  </mat-drawer>
+	<mat-drawer #drawer class="product-sidenav" mode="side">
+		<app-create-product (createdProduct)="createdProduct($event)"></app-create-product>
+	</mat-drawer>
 
-  <div class="product-sidenav-content">
-    <button type="button" mat-stroked-button (click)="drawer.toggle()">
-      Add Product
-    </button>
-    <app-list-products></app-list-products>
-  </div>
+	<div class="product-sidenav-content">
+		<button type="button" mat-stroked-button (click)="drawer.toggle()">Add Product</button>
+		<app-list-products></app-list-products>
+	</div>
 </mat-drawer-container>

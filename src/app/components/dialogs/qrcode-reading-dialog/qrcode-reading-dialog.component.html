@@ -1,0 +1,11 @@
+<h4>Product QrCode Reading</h4>
+<mat-form-field appearance="outline">
+	<mat-label>Stock</mat-label>
+	<input matInput type="number" required min="0" placeholder="Product price Ex. 41.8" class="createProductPrice" #stock />
+</mat-form-field>
+
+<ngx-scanner-qrcode #scanner="scanner" (event)="onEvent($event)"></ngx-scanner-qrcode>
+
+<mat-dialog-actions align="end">
+	<button mat-button mat-dialog-close color="primary" id="close-button">Kapat</button>
+</mat-dialog-actions>
