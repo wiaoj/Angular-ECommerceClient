@@ -31,7 +31,7 @@ import { OrderCodePipe } from "./pipes/orders/order-code.pipe";
 	providers: [
 		{
 			provide: "baseSignalRUrl",
-			useValue: "https://localhost:7158/",
+			useValue: "https://localhost:7158/", //deploy url yazılmalı
 			multi: true,
 		},
 		{
